@@ -1,81 +1,65 @@
 import Head from 'next/head'
-
+import React from 'react'
 export default function Home() {
+  const [cookieStandArray, setCookieStandArray] = React.useState([])
+
+  function eventHandler(event) {
+    event.preventDefault()
+    const cookieStand = {
+      location: event.target.location.value,
+      minimumCustomers: event.target.minimumCustomers.value,
+      maximumCustomers: event.target.maximumCustomers.value,
+      averageCookies: event.target.averageCookies.value,
+    }
+    setCookieStandArray(cookie => [...cookie, cookieStand])
+    
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="">
+      {/* flex flex-col items-center justify-center min-h-screen py-2 */}
       <Head>
-        <title>Create Next App</title>
+        <title>Cookie Stand Admin</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+      <main className="h-screen bg-green-50 ">
+        <header className="flex bg-green-500 justify-between text-gray-50 p-4 item-center">
+          <h1 className="text-2xl font-black" >
+            Cookie Stand Admin
+          </h1>
+        </header>
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
+        <form className="bg-green-200 w-3/4 mx-auto my-4 p-2 " onSubmit={eventHandler}>
+          <legend className="text-xl text-center">Create Cookie Stand</legend>
+          <label className="p-3">Location </label>
+          <input type="text" name="location" /><br />
 
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
+          <label className="p-3">Minimum Customers Per Hour </label>
+          <label className="p-11">Maximum Customers Per Hour </label>
+          <label className="p-2">Average Cookies Per Sale </label><br />
+          <input className="m-3" type="number" min="1" name="minimumCustomers" />
+          <input className="m-3" type="number" min="1" name="maximumCustomers" />
+          <input className="m-3" type="number" min="0" step="0.1" name="averageCookies" />
+          <button className="bg-green-500 mx-auto my-4 pr-10 pl-10 pt-2 pb-2">
+            Create
+          </button>
+        </form>
+        {/* "m-2 text-xl" */}
+        <dev className="text-center">
+          {
+          cookieStandArray.map((cookie,key) => {
+            return(
+              <p key={key} >{JSON.stringify(cookie)}</p>
+            )
 
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+          })
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+          }
+        </dev>
       </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
+      <footer className="flex bg-green-500  text-gray-50 p-4 ">
+        <p>@2021</p>
       </footer>
     </div>
   )
