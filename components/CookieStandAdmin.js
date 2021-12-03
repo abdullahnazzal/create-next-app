@@ -5,12 +5,9 @@ import Footer from "./Footer"
 // import { useAuth } from '../contexts/auth'
 import { hours } from "../data"
 // import useResource from "../hooks/useResource"
-function CookieStandAdmin({logout,user}) {
-    // const { user, login ,logout} = useAuth();
+function CookieStandAdmin() {
     const [cookieStandArray, setCookieStandArray] = useState([])
     const [totals, setTotals] = useState([])
-    // const sales = [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
-    // const {resources,createResource} = useResource();
     const sumTotals=()=>{
         if (cookieStandArray.length != 0) {
             
@@ -24,12 +21,8 @@ function CookieStandAdmin({logout,user}) {
                     }
                 }   
             }
-            // console.log("fdgfd",cookieStandArray[1].hourly_sales);
             setTotals([sumtotal, sumtotal.reduce((a,b) => a+b,0)])
         }
-        // setCookieStandArray(cookie => [...cookie, cookieStand])
-        // 
-        // console.log(totals);
     }
     useEffect(()=>{
         sumTotals()
@@ -40,13 +33,10 @@ function CookieStandAdmin({logout,user}) {
         const cookieStand = {
             location: event.target.location.value,
             id: cookieStandArray.length,
-            // description: "Cookie Stand",
             minimumCustomers: parseInt(event.target.minimumCustomers.value),
             maximumCustomers: parseInt(event.target.maximumCustomers.value),
             averageCookies: parseInt(event.target.averageCookies.value),
             hourly_sales: claculateHourlySales(parseInt(event.target.minimumCustomers.value), parseInt(event.target.maximumCustomers.value),parseInt(event.target.averageCookies.value)),
-            // owner: user.id,
-            // total: sales.reduce((a, b) => a + b, 0)
         }
         function claculateHourlySales(minSales,maxSales,avgCookies) {
             let hourly_sales = [];
@@ -57,9 +47,7 @@ function CookieStandAdmin({logout,user}) {
         }
         setCookieStandArray(cookie => [...cookie, cookieStand])
         
-        // setTotals()
-        // createResource(cookieStand);
-        // event.target.reset()
+       
     }
     return (
         <div className="">
