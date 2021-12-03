@@ -51,8 +51,7 @@ export default function useResource() {
         // STRETCH
         // Add ability for user to update an existing resource
     }
-
-
+    
     // helper function to handle getting Authorization headers EXACTLY right
     function config() {
 
