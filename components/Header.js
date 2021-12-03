@@ -9,7 +9,7 @@ function Header() {
       <h1 className="text-2xl font-black" >
         Cookie Stand Admin
       </h1>
-      <a href="#" className="p-1 mr-5 bg-black rounded-md">Overview</a>
+      <a href="/overview" className="p-1 mr-5 bg-black rounded-md">Overview</a>
       {
         user ? (
           <>
@@ -19,7 +19,7 @@ function Header() {
         ) :
           (
             <>
-              <button className="p-2 text-white bg-gray-500 rounded" onClick={() => {login('admin', 'Pass@123') }}>Login</button>
+              <button className="p-2 text-white bg-gray-500 rounded" onClick={() => {login('admin', 'admin123') }}>Login</button>
             </>
 
           )
