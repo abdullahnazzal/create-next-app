@@ -15,17 +15,17 @@ function LoginForm({login}) {
     }
     return (
         <>
-            <dev className="w-2/3 h-56 mx-auto my-10 bg-green-200">
+            <div className="w-2/3 h-56 mx-auto my-10 bg-green-200">
 
                 <form className="w-3/4 p-2 mx-auto my-4 bg-green-200 " onSubmit={handlelogin}>
                     <div className="flex flex-col items-center justify-center">
-                        <label for="username" >User name</label>
+                        <label htmlFor="username" >User name</label>
                         <br />
                         <input type="text" name="username" id="username" className="flex-grow w-10/12 bg-gray-200 rounded-sm" />
                     </div>
 
                     <div className="flex flex-col items-center justify-center">
-                        <label for="password" >Password</label>
+                        <label htmlFor="password" >Password</label>
                         <br />
                         <input type="password" name="password" id="password" className="flex-grow w-10/12 mt-2 bg-gray-200 rounded-sm" />
                     </div>
@@ -34,7 +34,7 @@ function LoginForm({login}) {
                         <button className="h-12 text-xl " >Log in </button>
                     </div>
                 </form>
-            </dev>
+            </div>
         </>
     )
 }

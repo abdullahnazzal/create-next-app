@@ -4,13 +4,14 @@ import Main from "./Main"
 import Footer from "./Footer"
 // import { useAuth } from '../contexts/auth'
 import { hours } from "../data"
-// import useResource from "../hooks/useResource"
-function CookieStandAdmin({logout,user}) {
-    // const { user, login ,logout} = useAuth();
+import useResource from "../hooks/useResource"
+
+function CookieStandAdmin(props) {
+    const {resources,loading,createResource,deleteResource} = useResource();
+    
     const [cookieStandArray, setCookieStandArray] = useState([])
     const [totals, setTotals] = useState([])
-    // const sales = [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
-    // const {resources,createResource} = useResource();
+   
     const sumTotals=()=>{
         if (cookieStandArray.length != 0) {
             
@@ -24,29 +25,26 @@ function CookieStandAdmin({logout,user}) {
                     }
                 }   
             }
-            // console.log("fdgfd",cookieStandArray[1].hourly_sales);
             setTotals([sumtotal, sumtotal.reduce((a,b) => a+b,0)])
         }
-        // setCookieStandArray(cookie => [...cookie, cookieStand])
-        // 
-        // console.log(totals);
+    
     }
+    
     useEffect(()=>{
         sumTotals()
-        console.log(cookieStandArray);
     },[cookieStandArray])
-    function onCreate(event) {
+
+    async function onCreate(event) {
         event.preventDefault()
         const cookieStand = {
+            id: resources.length,
             location: event.target.location.value,
-            id: cookieStandArray.length,
-            // description: "Cookie Stand",
-            minimumCustomers: parseInt(event.target.minimumCustomers.value),
-            maximumCustomers: parseInt(event.target.maximumCustomers.value),
-            averageCookies: parseInt(event.target.averageCookies.value),
+            description: event.target.location.value,
             hourly_sales: claculateHourlySales(parseInt(event.target.minimumCustomers.value), parseInt(event.target.maximumCustomers.value),parseInt(event.target.averageCookies.value)),
-            // owner: user.id,
-            // total: sales.reduce((a, b) => a + b, 0)
+            minimum_customers_per_hour: parseInt(event.target.minimumCustomers.value),
+            maximum_customers_per_hour: parseInt(event.target.maximumCustomers.value),
+            average_cookies_per_sale: parseInt(event.target.averageCookies.value),
+            owner: props.user.id,
         }
         function claculateHourlySales(minSales,maxSales,avgCookies) {
             let hourly_sales = [];
@@ -57,15 +55,19 @@ function CookieStandAdmin({logout,user}) {
         }
         setCookieStandArray(cookie => [...cookie, cookieStand])
         
-        // setTotals()
-        // createResource(cookieStand);
-        // event.target.reset()
+        createResource(cookieStand);
+
     }
+    // if(loading) {
+    //     return <p>Loading</p>
+    // } 
+    
     return (
-        <div className="">
+        <div className="flex flex-col justify-between h-screen">
             <Head />
-            <Main onCreate={onCreate} cookieStandArray={cookieStandArray} totals={totals} />
-            <Footer numberOfLocation={cookieStandArray} />
+            <Main user={props.user} logout={props.logout} onCreate={onCreate} onDelete={deleteResource} cookieStandArray={cookieStandArray}  />
+            <Footer  />
+            
         </div>
     )
 }

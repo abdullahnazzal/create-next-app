@@ -35,7 +35,9 @@ export function AuthProvider(props) {
                     id: decodeAccess.user_id,
                 }
             }
+            // setState(newState)
             setState((prevState)=>({...prevState, ...newState}))
+            // 
         }
         catch(error){
             console.log(error);

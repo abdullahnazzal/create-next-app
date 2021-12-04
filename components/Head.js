@@ -1,10 +1,10 @@
 import React from "react"
 function Head() {
     return (
-        <dev>
+        <div>
             <title>Cookie Stand Admin</title>
             <link rel="icon" href="/favicon.ico" />
-        </dev>
+        </div>
     )
 }
 

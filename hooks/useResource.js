@@ -1,7 +1,10 @@
 import axios from 'axios'
 import useSWR from 'swr'
+import jwt from 'jsonwebtoken'
 
 export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL;
+// export const tokenURL = `${apiUrl}api/v1/cookie_stands`
+
 import { useAuth } from '../contexts/auth'
 
 export default function useResource() {
@@ -64,6 +67,7 @@ export default function useResource() {
 
     function handleError(error) {
         console.error(error);
+        // console.log(error);
         // currently just log out on error
         // but a common error will be short lived token expiring
         // STRETCH: refresh the access token when it has expired
