@@ -1,9 +1,10 @@
-# Lab    : React I
+# Lab    : React IV - Front End Deployment
 
 ## Auther : Abdullah Nazzal
 
-[PR](https://github.com/abdullahnazzal/create-next-app/pull/1)
-
+[PR](https://github.com/abdullahnazzal/create-next-app/pull/3)
+[Front-End](https://create-next-app-sandy.vercel.app/)
+[Back-End](https://cookie-stand-api-abdullah.herokuapp.com/)
 
 ## Next.js + Tailwind CSS Example
 

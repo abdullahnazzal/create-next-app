@@ -1,6 +1,5 @@
 import axios from 'axios'
 import useSWR from 'swr'
-import jwt from 'jsonwebtoken'
 
 export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL;
 // export const tokenURL = `${apiUrl}api/v1/cookie_stands`
